@@ -29,7 +29,7 @@ router.get('/movies/:id', (req, res) => {
     // validate the id
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
         // it's an invalid ObjectId.
-        errorLog.error(`Movie id '${id}' is invalid. Please check again.`);
+        console.log(`Movie id '${id}' is invalid. Please check again.`);
         res.status(400);
         res.send(new BadRequestException(`Movie id '${id}' is invalid. Please check again.`, `Movie id '${id}' is invalid. Please check again.`));
     }
@@ -102,7 +102,7 @@ router.delete('/movies/:id', (req, res) => {
     // validate the id
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
         // it's an invalid ObjectId.
-        errorLog.error(`Movie id '${id}' is invalid. Please check again.`);
+        console.log(`Movie id '${id}' is invalid. Please check again.`);
         res.status(400);
         res.send(new BadRequestException(`Movie id '${id}' is invalid. Please check again.`, `Movie id '${id}' is invalid. Please check again.`));
     }
