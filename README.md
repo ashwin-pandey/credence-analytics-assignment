@@ -6,7 +6,7 @@
 
 ### GET - Get All Movies
 
-```JSON
+```URL
 http://localhost:4000/movies
 ```
 
@@ -43,7 +43,7 @@ http://localhost:4000/movies
 
 ### GET - Get Specific Movie
 
-```JSON
+```URL
 http://localhost:4000/movies/{id}
 ```
 
@@ -67,7 +67,7 @@ http://localhost:4000/movies/{id}
 
 ### POST - Create a new movie
 
-```JSON
+```URL
 http://localhost:4000/movies
 ```
 
@@ -102,7 +102,7 @@ http://localhost:4000/movies
 
 ### PATCH - Patch a specific movie
 
-```JSON
+```URL
 http://localhost:4000/movies/{id}
 ```
 
@@ -134,7 +134,7 @@ http://localhost:4000/movies/{id}
 
 ### DELETE - Delete a specific movie
 
-```JSON
+```URL
 http://localhost:4000/movies/{id}
 ```
 
