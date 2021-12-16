@@ -1,13 +1,28 @@
 const express = require('express');
-const { MoviesRouter } = require('./controller/movies.controller');
-const { BadRequestException } = require('./exceptions/exceptions');
+const { MoviesRouter } = require('./router/movies.router');
 const app = express();
 
+/**ENV CONFIG */
 require('dotenv').config({path: __dirname + '/.env'});
+/**DATABASE CONFIG */
 require('./config/db.config');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+/**CORS HEADERS */
+app.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET, POST, PUT , PATCH, DELETE, OPTIONS"
+    );
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "X-Requested-With,  x-xsrf-token, Content-Type, Authorization"
+    );
+    next();
+});
 
 /**ROUTE HANDLER */
 app.use('/', MoviesRouter);

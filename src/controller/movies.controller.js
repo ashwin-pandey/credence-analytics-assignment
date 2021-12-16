@@ -1,13 +1,11 @@
-const express = require('express');
 const { NotFoundException, BadRequestException } = require('../exceptions/exceptions');
 const { Movies } = require('../models/movies.model');
-const router = express.Router();
 
 /**
  * GET /movies
  * Purpose - Get all the movies in the database
  */
-router.get('/movies', (req, res) => {
+exports.getAllMovies = (req, res) => {
     Movies.find({}, (error, movies) => {
         if (error) {
             console.log(error);
@@ -18,13 +16,13 @@ router.get('/movies', (req, res) => {
             res.send(movies);
         }
     })
-});
+};
 
 /**
  * GET /movies/:id
  * Purpose - Get a specific movie
  */
-router.get('/movies/:id', (req, res) => {
+exports.getSpecificMovie = (req, res) => {
     const id = req.params.id;
     // validate the id
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -44,13 +42,13 @@ router.get('/movies/:id', (req, res) => {
             res.send(new NotFoundException(`Movie with id '${id}' not found.`));
         }
     });
-});
+};
 
 /**
  * POST /movies
  * Purpose - Create a new movie
  */
-router.post('/movies', (req, res) => {
+exports.createMovie = (req, res) => {
     Movies.create(req.body, (error, createdMovie) => {
         if (error) {
             console.log(`Error occurred while creating the movie.`, `${error.message}`);
@@ -63,12 +61,12 @@ router.post('/movies', (req, res) => {
             res.send(createdMovie);
         }
     });
-});
+};
 
 /**
  * PATCH /movies/:id
  */
-router.patch('/movies/:id', (req, res) => {
+exports.patchMovie = (req, res) => {
     const id = req.params.id;
     // validate the id
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -91,13 +89,13 @@ router.patch('/movies/:id', (req, res) => {
             res.send(new NotFoundException(`Movie with id '${id}' not found.`));
         }
     });
-});
+};
 
 /**
  * DELETE /movies/:id
  * Purpose - Delete a specific movie
  */
-router.delete('/movies/:id', (req, res) => {
+exports.deleteMovie = (req, res) => {
     const id = req.params.id;
     // validate the id
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -115,7 +113,4 @@ router.delete('/movies/:id', (req, res) => {
             res.send({ "message": "Movie deleted!" });
         }
     });
-});
-
-const MoviesRouter = router;
-module.exports = { MoviesRouter };
+};
